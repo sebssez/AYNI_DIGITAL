@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taller Artesano · Kallpa Cacao</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-inner">
+      <span class="serif" style="font-size:1.5rem;">Taller Artesano</span>
+      <nav class="nav-links" style="display:flex;">
+        <a href="/artesano/panel.html" class="active">Mis Productos</a>
+        <a href="/index.html">Ir a Comprar (Tienda)</a>
+        <a href="/pedidos.html">Mis Compras</a>
+        <a href="#" id="logout-btn" style="color:#B91C1C;">Cerrar Sesión</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="serif" style="font-size:2.2rem; margin-bottom:0.5rem;">Publicar Nuevo Chocolate</h1>
+    <p style="opacity:0.75; margin-bottom:1.5rem;">Como artesano puedes vender tus lotes en la tienda y también comprar productos de otros productores.</p>
+
+    <form id="form-artesano" class="admin-form">
+      <input type="text" id="a-nombre" class="input" placeholder="Nombre del producto" required>
+      <input type="text" id="a-cat" class="input" placeholder="Categoría (ej. Tabletas de origen)" required>
+      <input type="number" id="a-pct" class="input" placeholder="% Cacao" value="70" required>
+      <input type="text" id="a-notas" class="input" placeholder="Notas de cata">
+      <input type="number" step="0.01" id="a-precio" class="input" placeholder="Precio (S/)" required>
+      <input type="number" id="a-stock" class="input" placeholder="Stock disponible" value="15" required>
+      <button type="submit" class="btn btn-accent">Publicar en Tienda</button>
+    </form>
+
+    <h2 class="serif" style="font-size:1.6rem; margin-top:2rem;">Mis Productos Publicados</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Producto</th><th>Categoría</th><th>% Cacao</th><th>Precio</th><th>Stock</th><th>Acción</th></tr>
+        </thead>
+        <tbody id="tabla-artesano"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="/js/api.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = protegerPagina(['artesano', 'admin']);
+      if (!user) return;
+
+      document.getElementById('logout-btn').onclick = (e) => {
+        e.preventDefault();
+        localStorage.clear();
+        window.location.href = '/login.html';
+      };
+
+      cargarMisProductos();
+    });
+
+    async function cargarMisProductos() {
+      const productos = await apiFetch('/productos/mis-productos');
+      document.getElementById('tabla-artesano').innerHTML = productos.length
+        ? productos.map(p => `
+            <tr>
+              <td><strong>${p.nombre}</strong></td>
+              <td>${p.categoria}</td>
+              <td>${p.porcentaje_cacao}%</td>
+              <td>S/ ${Number(p.precio).toFixed(2)}</td>
+              <td>${p.stock}</td>
+              <td><button class="chip" onclick="borrarMio(${p.id})">Retirar</button></td>
+            </tr>
+          `).join('')
+        : '<tr><td colspan="6">Aún no has publicado productos propios.</td></tr>';
+    }
+
+    document.getElementById('form-artesano').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      await apiFetch('/productos', {
+        method: 'POST',
+        body: JSON.stringify({
+          nombre: document.getElementById('a-nombre').value,
+          categoria: document.getElementById('a-cat').value,
+          porcentaje_cacao: Number(document.getElementById('a-pct').value),
+          notas_cata: document.getElementById('a-notas').value,
+          precio: Number(document.getElementById('a-precio').value),
+          stock: Number(document.getElementById('a-stock').value)
+        })
+      });
+      e.target.reset();
+      cargarMisProductos();
+    });
+
+    window.borrarMio = async (id) => {
+      if (!confirm('¿Retirar este producto de la tienda?')) return;
+      await apiFetch(`/productos/${id}`, { method: 'DELETE' });
+      cargarMisProductos();
+    };
+  </script>
+</body>
+</html>

@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Si ya inició sesión y entra a login.html, redirigir según su rol
+  const userActivo = getUsuarioActual();
+  if (userActivo && window.location.pathname.includes('login.html')) {
+    redirigirPorRol(userActivo.rol);
+  }
+
   const formLogin = document.getElementById('form-login');
   const formRegistro = document.getElementById('form-registro');
 
@@ -14,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       localStorage.setItem('kc_token', data.token);
       localStorage.setItem('kc_user', JSON.stringify(data.usuario));
-      window.location.href = data.usuario.rol === 'admin' ? '/admin/dashboard.html' : '/tienda.html';
+      redirigirPorRol(data.usuario.rol);
     } catch (err) {
       alert(err.message);
     }
@@ -28,13 +34,20 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({
           nombre: document.getElementById('nombre').value,
           email: document.getElementById('email').value,
-          password: document.getElementById('password').value
+          password: document.getElementById('password').value,
+          rol: document.getElementById('rol').value
         })
       });
-      alert('Cuenta creada con éxito. Ahora inicia sesión.');
+      alert('Cuenta creada correctamente. Ahora inicia sesión.');
       window.location.href = '/login.html';
     } catch (err) {
       alert(err.message);
     }
   });
 });
+
+function redirigirPorRol(rol) {
+  if (rol === 'admin') window.location.href = '/admin/dashboard.html';
+  else if (rol === 'artesano') window.location.href = '/artesano/panel.html';
+  else window.location.href = '/index.html';
+}

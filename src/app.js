@@ -12,12 +12,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Servir archivos estáticos del frontend ultra rápido
+// Ruta raíz muestra el Login al iniciar la página
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/login.html'));
+});
+
 app.use(express.static(path.join(__dirname, '../public')));
 
-// Rutas de la API
 app.use('/api/auth', authRoutes);
-app.use('/api/libros', productoRoutes); // Alias opcional
 app.use('/api/productos', productoRoutes);
 app.use('/api/pedidos', pedidoRoutes);
 

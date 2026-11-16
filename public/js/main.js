@@ -1,3 +1,19 @@
+// Al inicio de DOMContentLoaded en public/js/main.js:
+const user = protegerPagina(); // Si no hay sesión, redirige automáticamente a /login.html
+if (!user) return;
+
+// Si el usuario tiene rol 'artesano', añade acceso directo a su taller en la barra
+if (user.rol === 'artesano') {
+  const nav = document.querySelector('.nav-links');
+  if (nav) {
+    const linkTaller = document.createElement('a');
+    linkTaller.href = '/artesano/panel.html';
+    linkTaller.textContent = 'Mi Taller (Vender)';
+    linkTaller.style.color = '#153E5C';
+    linkTaller.style.fontWeight = '700';
+    nav.appendChild(linkTaller);
+  }
+}
 const S = n => 'S/ ' + Number(n).toFixed(2);
 const barSvg = c => `<svg viewBox="0 0 100 140"><rect x="8" y="6" width="84" height="128" rx="8" fill="${c || '#3B2216'}"/><g stroke="rgba(0,0,0,.35)" stroke-width="2" fill="rgba(255,255,255,.08)">${[0,1,2,3].map(r=>[0,1].map(k=>`<rect x="${14+k*38}" y="${12+r*30}" width="34" height="26" rx="4"/>`).join('')).join('')}</g></svg>`;
 

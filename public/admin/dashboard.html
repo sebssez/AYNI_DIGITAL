@@ -3,33 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin · Panel de Pedidos</title>
+  <title>Admin Total · Kallpa Cacao</title>
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/admin.css">
 </head>
 <body>
   <header class="navbar">
     <div class="nav-inner">
-      <a href="/admin/dashboard.html" class="serif" style="font-size:1.5rem;">Kallpa Admin</a>
+      <span class="serif" style="font-size:1.5rem;">Panel Administrador</span>
       <nav class="nav-links" style="display:flex;">
-        <a href="/admin/dashboard.html" class="active">Pedidos</a>
-        <a href="/admin/productos.html">Productos</a>
-        <a href="/tienda.html">Ver Tienda</a>
+        <a href="/admin/dashboard.html" class="active">Usuarios y Pedidos</a>
+        <a href="/admin/productos.html">Catálogo Global</a>
+        <a href="/index.html">Ver Tienda</a>
+        <a href="#" id="logout-btn" style="color:#B91C1C;">Salir</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
-    <h1 class="serif" style="font-size:2.2rem; margin-bottom:1.5rem;">Gestión de Pedidos</h1>
     <div class="admin-grid">
-      <div class="stat-card"><span>Total Pedidos</span><div id="stat-pedidos" class="stat-num">0</div></div>
-      <div class="stat-card"><span>Ingresos Totales</span><div id="stat-ingresos" class="stat-num">S/ 0.00</div></div>
+      <div class="stat-card"><span>Usuarios Registrados</span><div id="stat-users" class="stat-num">0</div></div>
+      <div class="stat-card"><span>Pedidos Totales</span><div id="stat-pedidos" class="stat-num">0</div></div>
+      <div class="stat-card"><span>Ventas Totales</span><div id="stat-ingresos" class="stat-num">S/ 0.00</div></div>
     </div>
 
+    <h2 class="serif" style="font-size:1.8rem;">Control de Usuarios y Roles</h2>
+    <div class="table-wrap" style="margin-bottom:2.5rem;">
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Nombre</th><th>Correo</th><th>Rol Actual</th><th>Asignar Permisos</th></tr>
+        </thead>
+        <tbody id="admin-usuarios"></tbody>
+      </table>
+    </div>
+
+    <h2 class="serif" style="font-size:1.8rem;">Todos los Pedidos del Sistema</h2>
     <div class="table-wrap">
       <table>
         <thead>
-          <tr><th>Código</th><th>Cliente</th><th>Total</th><th>Estado</th><th>Cambiar Estado</th></tr>
+          <tr><th>Código</th><th>Cliente</th><th>Total</th><th>Estado</th><th>Actualizar</th></tr>
         </thead>
         <tbody id="admin-pedidos"></tbody>
       </table>
@@ -39,18 +51,45 @@
   <script src="/js/api.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
-      const user = getUsuarioActual();
-      if (!user || user.rol !== 'admin') return (window.location.href = '/login.html');
+      const user = protegerPagina(['admin']);
+      if (!user) return;
 
-      const pedidos = await apiFetch('/pedidos');
+      document.getElementById('logout-btn').onclick = (e) => {
+        e.preventDefault();
+        localStorage.clear();
+        window.location.href = '/login.html';
+      };
+
+      const [usuarios, pedidos] = await Promise.all([
+        apiFetch('/auth/usuarios'),
+        apiFetch('/pedidos')
+      ]);
+
+      document.getElementById('stat-users').textContent = usuarios.length;
       document.getElementById('stat-pedidos').textContent = pedidos.length;
       const total = pedidos.reduce((s, p) => s + Number(p.total), 0);
       document.getElementById('stat-ingresos').textContent = `S/ ${total.toFixed(2)}`;
 
+      document.getElementById('admin-usuarios').innerHTML = usuarios.map(u => `
+        <tr>
+          <td>#${u.id}</td>
+          <td><strong>${u.nombre}</strong></td>
+          <td>${u.email}</td>
+          <td><span class="chip" style="cursor:default;">${u.rol.toUpperCase()}</span></td>
+          <td>
+            <select class="input" style="padding:0.35rem; width:auto;" onchange="actualizarRol(${u.id}, this.value)">
+              <option value="usuario" ${u.rol === 'usuario' ? 'selected' : ''}>Usuario (Compra)</option>
+              <option value="artesano" ${u.rol === 'artesano' ? 'selected' : ''}>Artesano (Compra/Venta)</option>
+              <option value="admin" ${u.rol === 'admin' ? 'selected' : ''}>Admin (Todo)</option>
+            </select>
+          </td>
+        </tr>
+      `).join('');
+
       document.getElementById('admin-pedidos').innerHTML = pedidos.map(p => `
         <tr>
           <td><strong>${p.codigo}</strong></td>
-          <td>${p.cliente}<br><small style="opacity:0.7;">${p.email}</small></td>
+          <td>${p.cliente} (${p.email})</td>
           <td>S/ ${Number(p.total).toFixed(2)}</td>
           <td>${p.estado}</td>
           <td>
@@ -63,6 +102,11 @@
         </tr>
       `).join('');
     });
+
+    window.actualizarRol = async (id, rol) => {
+      await apiFetch(`/auth/usuarios/${id}/rol`, { method: 'PUT', body: JSON.stringify({ rol }) });
+      location.reload();
+    };
 
     window.cambiarEstado = async (id, estado) => {
       await apiFetch(`/pedidos/${id}/estado`, { method: 'PUT', body: JSON.stringify({ estado }) });
