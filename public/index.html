@@ -3,98 +3,218 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kallpa Cacao · Chocolate artesanal de origen</title>
+  <title>Kallpa Cacao · Cacao Puro de Origen</title>
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-  <div class="top-bar">Envío gratis en compras sobre S/ 180 · Nueva cosecha de Cusco ya disponible</div>
+  <!-- Barra promocional escalonada estilo LARQ -->
+  <div class="top-bar">
+    Oferta de Cosecha: hasta 20% de descuento automático en tu cesta · 10% en pedidos de S/ 80+
+  </div>
 
+  <!-- Navbar -->
   <header class="navbar">
     <div class="nav-inner">
-      <a href="/index.html" class="serif" style="font-size:1.65rem;">Kallpa Cacao</a>
-      <nav class="nav-links" id="nav-links">
+      <a href="/index.html" class="serif" style="font-size:1.7rem; letter-spacing:0.06em;">KALLPA</a>
+      <nav class="nav-links">
         <a href="/index.html" class="active">Inicio</a>
         <a href="/tienda.html">Tienda</a>
-        <a href="#origen">Nuestro origen</a>
+        <a href="#rituales">Rituales</a>
+        <a href="#analizador">Guía de Pureza</a>
         <a href="/pedidos.html">Mis Pedidos</a>
-        <a href="/admin/dashboard.html" id="nav-admin" style="display:none; color:var(--accent);">Admin</a>
-        <a href="/login.html" id="nav-auth">Ingresar</a>
+        <a href="/admin/dashboard.html" id="nav-admin" style="display:none; color:#153E5C; font-weight:700;">Admin</a>
       </nav>
       <div class="nav-actions">
         <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema">◐</button>
-        <button id="open-cart" class="icon-btn">Bolsa (<span id="cart-count">0</span>)</button>
-        <button id="menu-btn" class="icon-btn" style="display:none;" aria-label="Menú">☰</button>
+        <a href="/login.html" id="nav-auth" class="icon-btn">Perfil</a>
+        <button id="open-cart" class="icon-btn" style="background:var(--ink); color:var(--bg);">
+          Cesta (<span id="cart-count">0</span>)
+        </button>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="container" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:2.5rem; align-items:center; padding-top:3.5rem; padding-bottom:3.5rem;">
+    <!-- Hero Principal -->
+    <section class="container" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap:3rem; align-items:center; padding-top:3.5rem; padding-bottom:4rem;">
       <div>
-        <h1 class="serif" style="font-size:3.2rem;">El arte del cacao puro, hecho a mano</h1>
-        <p style="margin:1.25rem 0 2rem; font-size:1.05rem; opacity:0.85;">
-          Chocolate bean-to-bar de pequeñas fincas andinas en La Convención, Cusco. Comercio justo, ingredientes naturales y nada más que cacao y azúcar de caña.
+        <span style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.15em; color:#153E5C; font-weight:700;">
+          Bean-to-Bar · La Convención, Cusco
+        </span>
+        <h1 class="serif" style="font-size:3.4rem; margin:0.75rem 0 1.25rem;">
+          Cacao puro, diseñado para tu ritual diario.
+        </h1>
+        <p style="font-size:1.05rem; opacity:0.8; max-width:480px; margin-bottom:2rem;">
+          Sin lecitinas, sin grasas hidrogenadas ni saborizantes. Solo granos nativos fermentados y refinados durante 48 horas. Descuento automático al finalizar tu compra.
         </p>
-        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-          <a href="/tienda.html" class="btn">Explorar colección</a>
-          <a href="#origen" class="btn btn-o">Conocer el proceso</a>
+        <div style="display:flex; gap:0.85rem; flex-wrap:wrap;">
+          <a href="/tienda.html" class="btn btn-accent">Comprar ahora</a>
+          <a href="#analizador" class="btn btn-o">¿Qué contiene tu chocolate?</a>
         </div>
       </div>
-      <div style="background:linear-gradient(135deg,#3b2216,#2C1A12 60%,#5a3520); border-radius:1.75rem; padding:2.5rem; display:grid; place-items:center;">
-        <svg viewBox="0 0 320 360" style="width:100%; max-width:300px;" role="img" aria-label="Tableta de chocolate partida">
-          <g transform="rotate(-8 160 180)"><rect x="40" y="40" width="170" height="250" rx="10" fill="#4a2a1a"/>
-          <g fill="#5c3720" stroke="#2C1A12" stroke-width="3"><rect x="52" y="52" width="68" height="70" rx="6"/><rect x="130" y="52" width="68" height="70" rx="6"/><rect x="52" y="132" width="68" height="70" rx="6"/><rect x="130" y="132" width="68" height="70" rx="6"/><rect x="52" y="212" width="68" height="66" rx="6"/></g></g>
-          <g transform="rotate(14 230 200)"><rect x="190" y="110" width="100" height="200" rx="10" fill="#4a2a1a"/><g fill="#6a4026" stroke="#2C1A12" stroke-width="3"><rect x="200" y="122" width="80" height="80" rx="6"/><rect x="200" y="212" width="80" height="88" rx="6"/></g></g>
-          <ellipse cx="90" cy="320" rx="22" ry="12" fill="#8B4513"/><ellipse cx="135" cy="332" rx="22" ry="12" fill="#A0522D" transform="rotate(-20 135 332)"/><ellipse cx="60" cy="338" rx="16" ry="9" fill="#C59B27" opacity=".8"/>
+
+      <div style="background:linear-gradient(145deg, #153E5C, #2C1A12); border-radius:24px; padding:3rem; display:grid; place-items:center;">
+        <svg viewBox="0 0 320 360" style="width:100%; max-width:290px;" role="img" aria-label="Tableta Kallpa Cacao">
+          <g transform="rotate(-7 160 180)"><rect x="40" y="40" width="170" height="250" rx="12" fill="#3B2216"/>
+          <g fill="#5C3720" stroke="#1C1917" stroke-width="3"><rect x="52" y="52" width="68" height="70" rx="6"/><rect x="130" y="52" width="68" height="70" rx="6"/><rect x="52" y="132" width="68" height="70" rx="6"/><rect x="130" y="132" width="68" height="70" rx="6"/><rect x="52" y="212" width="68" height="66" rx="6"/></g></g>
+          <g transform="rotate(12 230 200)"><rect x="190" y="110" width="100" height="200" rx="12" fill="#3B2216"/><g fill="#7A4A2B" stroke="#1C1917" stroke-width="3"><rect x="200" y="122" width="80" height="80" rx="6"/><rect x="200" y="212" width="80" height="88" rx="6"/></g></g>
         </svg>
       </div>
     </section>
 
-    <section class="section-alt">
-      <div class="container" style="padding-top:0; padding-bottom:0;">
-        <div class="grid-4" style="text-align:center;">
-          <div><h3 class="serif" style="font-size:1.35rem;">Cacao de origen</h3><p style="font-size:0.9rem; opacity:0.75;">Granos de fincas identificadas en Cusco</p></div>
-          <div><h3 class="serif" style="font-size:1.35rem;">Sin aditivos</h3><p style="font-size:0.9rem; opacity:0.75;">Cacao y azúcar de caña, nada más</p></div>
-          <div><h3 class="serif" style="font-size:1.35rem;">Elaboración artesanal</h3><p style="font-size:0.9rem; opacity:0.75;">Tandas pequeñas refinadas en piedra</p></div>
-          <div><h3 class="serif" style="font-size:1.35rem;">Comercio justo</h3><p style="font-size:0.9rem; opacity:0.75;">Pagamos +30% sobre el mercado</p></div>
+    <!-- Cinta Infinita Animada (Marquee estilo LARQ) -->
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+         •  #CacaoConPropósito  •  100% Grano Nativo Chuncho  •  Sin Aditivos ni Lecitina de Soya  •  Refinado 48 Horas en Piedra  •  +30% Comercio Directo
+         •  #CacaoConPropósito  •  100% Grano Nativo Chuncho  •  Sin Aditivos ni Lecitina de Soya  •  Refinado 48 Horas en Piedra  •  +30% Comercio Directo
+      </div>
+    </div>
+
+    <!-- Sección Catálogo Destacado con Selector de Gramaje -->
+    <section class="container">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem;">
+        <div>
+          <h2 class="serif" style="font-size:2.5rem;">Productos Kallpa</h2>
+          <p style="opacity:0.75;">Selecciona el gramaje y añade a tu cesta para activar los descuentos por nivel.</p>
+        </div>
+        <a href="/tienda.html" class="btn btn-o" style="padding:0.55rem 1.25rem; font-size:0.85rem;">Ver todo</a>
+      </div>
+
+      <div id="filtros-categoria" style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.75rem;"></div>
+      <div id="grid-productos" class="grid-4"></div>
+    </section>
+
+    <!-- Sección "Elige cómo disfrutas tu cacao" (3 tarjetas estilo LARQ) -->
+    <section id="rituales" class="container">
+      <h2 class="serif" style="font-size:2.5rem; margin-bottom:1.75rem;">Elige tu ritual</h2>
+      <div class="ritual-grid">
+        <div class="ritual-card">
+          <div>
+            <span style="font-size:0.78rem; font-weight:700; text-transform:uppercase; color:#153E5C;">Sobre la marcha</span>
+            <h3 class="serif" style="font-size:1.85rem; margin:0.5rem 0;">Tabletas de Origen</h3>
+            <p style="font-size:0.92rem; opacity:0.8;">Barras de 70% y 85% cacao para energía limpia y concentración en cualquier momento.</p>
+          </div>
+          <a href="/tienda.html" class="btn" style="width:fit-content; margin-top:1.5rem;">Explorar tabletas</a>
+        </div>
+
+        <div class="ritual-card">
+          <div>
+            <span style="font-size:0.78rem; font-weight:700; text-transform:uppercase; color:#153E5C;">En casa</span>
+            <h3 class="serif" style="font-size:1.85rem; margin:0.5rem 0;">Cacao Ceremonial & Nibs</h3>
+            <p style="font-size:0.92rem; opacity:0.8;">Pasta pura prensada en frío y nibs tostados para bebidas calientes y desayunos nutritivos.</p>
+          </div>
+          <a href="/tienda.html" class="btn" style="width:fit-content; margin-top:1.5rem;">Explorar cacao puro</a>
+        </div>
+
+        <div class="ritual-card" style="background:#153E5C; color:#FFFFFF;">
+          <div>
+            <span style="font-size:0.78rem; font-weight:700; text-transform:uppercase; color:#93C5FD;">Regalos empresa</span>
+            <h3 class="serif" style="font-size:1.85rem; margin:0.5rem 0;">La originalidad nunca pasa de moda</h3>
+            <p style="font-size:0.92rem; opacity:0.85;">Cajas de degustación personalizadas con tarjeta de cata para eventos y regalos corporativos.</p>
+          </div>
+          <a href="/tienda.html" class="btn" style="background:#FFFFFF; color:#153E5C; width:fit-content; margin-top:1.5rem;">Solicitar selección</a>
         </div>
       </div>
     </section>
 
-    <section id="origen" class="container" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:2.5rem; align-items:center;">
-      <div class="art" style="background:#3b2216; max-height:380px;">
-        <svg viewBox="0 0 200 200" style="width:65%"><circle cx="100" cy="100" r="70" fill="#5c3720"/><path d="M60 100c10-40 70-40 80 0-10 40-70 40-80 0Z" fill="#8B4513"/><path d="M70 100h60M80 85c15 10 25 10 40 0M80 115c15-10 25-10 40 0" stroke="#C59B27" stroke-width="2" fill="none"/></svg>
-      </div>
-      <div>
-        <h2 class="serif" style="font-size:2.5rem;">Del grano a la barra</h2>
-        <p style="margin-top:1rem; opacity:0.85;">Trabajamos con familias cacaoteras de La Convención. Cada lote se fermenta entre cinco y siete días, se seca al sol y se refina durante 48 horas antes del templado.</p>
-        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:1.75rem;">
-          <div><strong class="serif" style="font-size:1.8rem; color:var(--accent);">12</strong><p style="font-size:0.82rem;">familias aliadas</p></div>
-          <div><strong class="serif" style="font-size:1.8rem; color:var(--accent);">48 h</strong><p style="font-size:0.82rem;">de refinado</p></div>
-          <div><strong class="serif" style="font-size:1.8rem; color:var(--accent);">+30%</strong><p style="font-size:0.82rem;">precio justo</p></div>
+    <!-- Analizador Interactivo: "¿Qué contiene tu chocolate comercial?" (Inspirado en el analizador de agua de LARQ) -->
+    <section id="analizador" class="container">
+      <div style="background:var(--bg2); border-radius:24px; padding:2.5rem; border:1px solid var(--line);">
+        <div style="max-width:680px;">
+          <h2 class="serif" style="font-size:2.3rem;">¿Qué se esconde en el chocolate industrial?</h2>
+          <p style="margin-top:0.75rem; opacity:0.8;">
+            Muchos chocolates comerciales reemplazan la manteca de cacao por aceites vegetales y exceso de azúcar. Selecciona un aditivo común para ver la diferencia con Kallpa Cacao:
+          </p>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin:1.5rem 0;" id="ingredientes-tabs">
+          <button class="chip on" data-ing="grasa">Grasas Vegetales (PGPR)</button>
+          <button class="chip" data-ing="azucar">Jarabe de Glucosa / Azúcar Refinada</button>
+          <button class="chip" data-ing="lecitina">Lecitina de Soya Transgénica</button>
+          <button class="chip" data-ing="aromas">Saborizantes Artificiales</button>
+        </div>
+
+        <div id="ingrediente-detalle" style="background:var(--card); padding:1.5rem; border-radius:14px; border:1px solid var(--line);">
+          <strong style="color:#B91C1C; font-size:0.9rem;">Chocolate Industrial:</strong>
+          <p style="margin:0.35rem 0 0.85rem; font-size:0.95rem;">Sustituye la manteca natural de cacao por aceites de palma o soya hidrogenados para abaratar costos, dejando una sensación cerosa.</p>
+          <strong style="color:#15803D; font-size:0.9rem;">Estándar Kallpa Cacao:</strong>
+          <p style="margin-top:0.35rem; font-size:0.95rem;">100% manteca pura del mismo grano de cacao, fundiéndose exactamente a la temperatura corporal (36.5 °C).</p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>© 2026 Kallpa Cacao · Hecho a mano en los Andes, Cusco - Perú</footer>
+  <footer>
+    <p>© 2026 Kallpa Cacao · Cacao Fino de Origen · Cusco, Perú</p>
+  </footer>
 
-  <!-- Carrito lateral -->
+  <!-- Cesta Lateral Deslizante con Barra de Descuentos Escalonados (Estilo LARQ) -->
   <div id="shade" class="shade"></div>
-  <aside id="drawer" class="drawer">
+  <aside id="drawer" class="drawer" aria-label="Tu cesta">
     <div style="display:flex; justify-content:space-between; align-items:center; padding:1.25rem; border-bottom:1px solid var(--line);">
-      <h2 class="serif" style="font-size:1.6rem;">Tu bolsa</h2>
+      <h2 class="serif" style="font-size:1.6rem;">Tu cesta</h2>
       <button id="close-cart" class="chip">Cerrar</button>
     </div>
+
+    <!-- Barra de progreso de descuentos -->
+    <div class="tiers-box">
+      <div class="tiers-steps">
+        <div id="tier-0" class="tier-step">10% off<br>S/ 80</div>
+        <div id="tier-1" class="tier-step">15% off<br>S/ 140</div>
+        <div id="tier-2" class="tier-step">20% off<br>S/ 200</div>
+      </div>
+      <div class="progress-bg"><div id="tier-fill" class="progress-fill"></div></div>
+      <p id="tier-msg" style="font-size:0.78rem; margin-top:0.5rem; text-align:center; font-weight:500;"></p>
+    </div>
+
     <div id="cart-items" style="flex:1; overflow-y:auto; padding:1.25rem; display:flex; flex-direction:column; gap:1rem;"></div>
-    <div style="padding:1.25rem; border-top:1px solid var(--line);">
-      <div style="display:flex; justify-content:space-between; font-size:1.1rem;"><span>Subtotal</span><strong id="cart-sub">S/ 0.00</strong></div>
-      <p id="cart-ship" style="font-size:0.85rem; opacity:0.75; margin-top:0.25rem;"></p>
-      <button id="checkout-btn" class="btn" style="width:100%; margin-top:1rem;">Confirmar pedido</button>
+
+    <div style="padding:1.25rem; border-top:1px solid var(--line); background:var(--bg2);">
+      <p id="cart-disc" style="font-size:0.82rem; color:#15803D; font-weight:600; margin-bottom:0.35rem;"></p>
+      <div style="display:flex; justify-content:space-between; font-size:1.15rem;">
+        <span>Total estimado</span>
+        <strong id="cart-sub">S/ 0.00</strong>
+      </div>
+      <button id="checkout-btn" class="btn btn-accent" style="width:100%; margin-top:1rem;">Finalizar compra</button>
     </div>
   </aside>
 
   <script src="/js/api.js" defer></script>
   <script src="/js/main.js" defer></script>
+  <script src="/js/tienda.js" defer></script>
+  <script>
+    // Lógica interactiva del Analizador de Pureza
+    const INFO_ING = {
+      grasa: {
+        bad: 'Sustituye la manteca natural de cacao por aceites de palma o soya hidrogenados para abaratar costos, dejando una sensación cerosa.',
+        good: '100% manteca pura del mismo grano de cacao, fundiéndose exactamente a la temperatura corporal (36.5 °C).'
+      },
+      azucar: {
+        bad: 'El azúcar refinado suele ser el primer ingrediente (más del 55%), ocultando defectos de granos mal fermentados.',
+        good: 'Usamos entre 0% y 30% de azúcar orgánica de caña sin refinar, permitiendo sentir las notas frutales naturales del cacao.'
+      },
+      lecitina: {
+        bad: 'Emulsionante industrial usado para acelerar el mezclado en máquinas masivas y reducir el tiempo de refinado.',
+        good: 'Refinamos en molinos de piedra durante 48 horas continuas para lograr sedosidad natural sin emulsionantes.'
+      },
+      aromas: {
+        bad: 'Vainillina sintética derivada de petroquímicos para estandarizar un sabor plano.',
+        good: 'Tostado controlado por microlote que preserva los aromas reales a frutos rojos, nueces y miel de cada finca.'
+      }
+    };
+
+    document.getElementById('ingredientes-tabs')?.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-ing]');
+      if (!btn) return;
+      [...e.currentTarget.children].forEach(b => b.classList.toggle('on', b === btn));
+      const d = INFO_ING[btn.dataset.ing];
+      document.getElementById('ingrediente-detalle').innerHTML = `
+        <strong style="color:#B91C1C; font-size:0.9rem;">Chocolate Industrial:</strong>
+        <p style="margin:0.35rem 0 0.85rem; font-size:0.95rem;">${d.bad}</p>
+        <strong style="color:#15803D; font-size:0.9rem;">Estándar Kallpa Cacao:</strong>
+        <p style="margin-top:0.35rem; font-size:0.95rem;">${d.good}</p>
+      `;
+    });
+  </script>
 </body>
 </html>
