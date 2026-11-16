@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kallpa Cacao · Registro</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="/index.html" class="serif" style="font-size:1.65rem;">Kallpa Cacao</a>
+      <nav class="nav-links">
+        <a href="/index.html">Inicio</a>
+        <a href="/tienda.html">Tienda</a>
+        <a href="/login.html">Ingresar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="auth-box">
+      <h1 class="serif" style="font-size:2rem; margin-bottom:0.5rem;">Crear Cuenta</h1>
+      <p style="font-size:0.9rem; opacity:0.75; margin-bottom:1.5rem;">Únete para guardar tus pedidos y recibir novedades.</p>
+      <form id="form-registro">
+        <div class="form-group">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" class="input" required placeholder="Ej. Lucía Paredes">
+        </div>
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" class="input" required placeholder="tu@correo.com">
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" class="input" required minlength="6" placeholder="Mínimo 6 caracteres">
+        </div>
+        <button type="submit" class="btn" style="width:100%;">Registrarme</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>© 2026 Kallpa Cacao</footer>
+  <script src="/js/api.js" defer></script>
+  <script src="/js/auth.js" defer></script>
+</body>
+</html>

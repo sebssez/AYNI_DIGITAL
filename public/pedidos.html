@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kallpa Cacao · Mis Pedidos</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="/index.html" class="serif" style="font-size:1.65rem;">Kallpa Cacao</a>
+      <nav class="nav-links">
+        <a href="/index.html">Inicio</a>
+        <a href="/tienda.html">Tienda</a>
+        <a href="/pedidos.html" class="active">Mis Pedidos</a>
+        <a href="/login.html" id="nav-auth">Ingresar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="serif" style="font-size:2.4rem;">Historial de Pedidos</h1>
+    <p style="opacity:0.75;">Revisa el código de seguimiento y estado de tus compras.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody id="lista-pedidos"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer>© 2026 Kallpa Cacao</footer>
+  <script src="/js/api.js" defer></script>
+  <script src="/js/main.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const tbody = document.getElementById('lista-pedidos');
+      try {
+        const pedidos = await apiFetch('/pedidos/mis-pedidos');
+        tbody.innerHTML = pedidos.length
+          ? pedidos.map(p => `
+              <tr>
+                <td><strong>${p.codigo}</strong></td>
+                <td>${new Date(p.creado_en).toLocaleDateString()}</td>
+                <td>S/ ${Number(p.total).toFixed(2)}</td>
+                <td><span class="chip" style="cursor:default;">${p.estado}</span></td>
+              </tr>
+            `).join('')
+          : '<tr><td colspan="4">Aún no tienes pedidos registrados.</td></tr>';
+      } catch {
+        tbody.innerHTML = '<tr><td colspan="4">Inicia sesión para ver tus pedidos.</td></tr>';
+      }
+    });
+  </script>
+</body>
+</html>

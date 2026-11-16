@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin · Panel de Pedidos</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="/admin/dashboard.html" class="serif" style="font-size:1.5rem;">Kallpa Admin</a>
+      <nav class="nav-links" style="display:flex;">
+        <a href="/admin/dashboard.html" class="active">Pedidos</a>
+        <a href="/admin/productos.html">Productos</a>
+        <a href="/tienda.html">Ver Tienda</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="serif" style="font-size:2.2rem; margin-bottom:1.5rem;">Gestión de Pedidos</h1>
+    <div class="admin-grid">
+      <div class="stat-card"><span>Total Pedidos</span><div id="stat-pedidos" class="stat-num">0</div></div>
+      <div class="stat-card"><span>Ingresos Totales</span><div id="stat-ingresos" class="stat-num">S/ 0.00</div></div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Código</th><th>Cliente</th><th>Total</th><th>Estado</th><th>Cambiar Estado</th></tr>
+        </thead>
+        <tbody id="admin-pedidos"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="/js/api.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = getUsuarioActual();
+      if (!user || user.rol !== 'admin') return (window.location.href = '/login.html');
+
+      const pedidos = await apiFetch('/pedidos');
+      document.getElementById('stat-pedidos').textContent = pedidos.length;
+      const total = pedidos.reduce((s, p) => s + Number(p.total), 0);
+      document.getElementById('stat-ingresos').textContent = `S/ ${total.toFixed(2)}`;
+
+      document.getElementById('admin-pedidos').innerHTML = pedidos.map(p => `
+        <tr>
+          <td><strong>${p.codigo}</strong></td>
+          <td>${p.cliente}<br><small style="opacity:0.7;">${p.email}</small></td>
+          <td>S/ ${Number(p.total).toFixed(2)}</td>
+          <td>${p.estado}</td>
+          <td>
+            <select class="input" style="padding:0.35rem; width:auto;" onchange="cambiarEstado(${p.id}, this.value)">
+              ${['Pendiente','Confirmado','Enviado','Entregado','Cancelado'].map(e =>
+                `<option value="${e}" ${e === p.estado ? 'selected' : ''}>${e}</option>`
+              ).join('')}
+            </select>
+          </td>
+        </tr>
+      `).join('');
+    });
+
+    window.cambiarEstado = async (id, estado) => {
+      await apiFetch(`/pedidos/${id}/estado`, { method: 'PUT', body: JSON.stringify({ estado }) });
+      location.reload();
+    };
+  </script>
+</body>
+</html>

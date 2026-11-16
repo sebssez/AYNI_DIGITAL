@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin · Gestión de Productos</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="/admin/dashboard.html" class="serif" style="font-size:1.5rem;">Kallpa Admin</a>
+      <nav class="nav-links" style="display:flex;">
+        <a href="/admin/dashboard.html">Pedidos</a>
+        <a href="/admin/productos.html" class="active">Productos</a>
+        <a href="/tienda.html">Ver Tienda</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="serif" style="font-size:2.2rem; margin-bottom:1rem;">Catálogo de Productos</h1>
+
+    <form id="form-producto" class="admin-form">
+      <input type="text" id="p-nombre" class="input" placeholder="Nombre (ej. Cacao 75%)" required>
+      <input type="text" id="p-cat" class="input" placeholder="Categoría" required>
+      <input type="number" id="p-pct" class="input" placeholder="% Cacao" value="70" required>
+      <input type="text" id="p-notas" class="input" placeholder="Notas de cata">
+      <input type="number" step="0.01" id="p-precio" class="input" placeholder="Precio (S/)" required>
+      <input type="number" id="p-stock" class="input" placeholder="Stock" value="20" required>
+      <button type="submit" class="btn">Agregar Producto</button>
+    </form>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Producto</th><th>Categoría</th><th>%</th><th>Precio</th><th>Stock</th><th>Acción</th></tr>
+        </thead>
+        <tbody id="admin-productos"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="/js/api.js" defer></script>
+  <script>
+    async function cargarAdminProductos() {
+      const user = getUsuarioActual();
+      if (!user || user.rol !== 'admin') return (window.location.href = '/login.html');
+
+      const productos = await apiFetch('/productos');
+      document.getElementById('admin-productos').innerHTML = productos.map(p => `
+        <tr>
+          <td><strong>${p.nombre}</strong></td>
+          <td>${p.categoria}</td>
+          <td>${p.porcentaje_cacao}%</td>
+          <td>S/ ${Number(p.precio).toFixed(2)}</td>
+          <td>${p.stock}</td>
+          <td><button class="chip" onclick="eliminarProducto(${p.id})">Eliminar</button></td>
+        </tr>
+      `).join('');
+    }
+
+    document.getElementById('form-producto').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      await apiFetch('/productos', {
+        method: 'POST',
+        body: JSON.stringify({
+          nombre: document.getElementById('p-nombre').value,
+          categoria: document.getElementById('p-cat').value,
+          porcentaje_cacao: Number(document.getElementById('p-pct').value),
+          notas_cata: document.getElementById('p-notas').value,
+          precio: Number(document.getElementById('p-precio').value),
+          stock: Number(document.getElementById('p-stock').value)
+        })
+      });
+      e.target.reset();
+      cargarAdminProductos();
+    });
+
+    window.eliminarProducto = async (id) => {
+      if (!confirm('¿Eliminar este producto del catálogo?')) return;
+      await apiFetch(`/productos/${id}`, { method: 'DELETE' });
+      cargarAdminProductos();
+    };
+
+    document.addEventListener('DOMContentLoaded', cargarAdminProductos);
+  </script>
+</body>
+</html>
