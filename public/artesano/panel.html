@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Taller Artesano · Kallpa Cacao</title>
+  <title>Taller Artesano · Ayni Artesanías</title>
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/admin.css">
 </head>
+
 <body>
   <header class="navbar">
     <div class="nav-inner">
       <span class="serif" style="font-size:1.5rem;">Taller Artesano</span>
       <nav class="nav-links" style="display:flex;">
-        <a href="/artesano/panel.html" class="active">Mis Productos</a>
+        <a href="/artesano/panel.html" class="active">Mis Piezas</a>
         <a href="/index.html">Ir a Comprar (Tienda)</a>
         <a href="/pedidos.html">Mis Compras</a>
         <a href="#" id="logout-btn" style="color:#B91C1C;">Cerrar Sesión</a>
@@ -21,24 +23,34 @@
   </header>
 
   <main class="container">
-    <h1 class="serif" style="font-size:2.2rem; margin-bottom:0.5rem;">Publicar Nuevo Chocolate</h1>
-    <p style="opacity:0.75; margin-bottom:1.5rem;">Como artesano puedes vender tus lotes en la tienda y también comprar productos de otros productores.</p>
+    <h1 class="serif" style="font-size:2.2rem; margin-bottom:0.5rem;">Publicar Nueva Pieza Artesanal</h1>
+    <p style="opacity:0.75; margin-bottom:1.5rem;">Como artesano puedes vender tus creaciones en la tienda y también
+      adquirir piezas de otros talleres.</p>
 
     <form id="form-artesano" class="admin-form">
-      <input type="text" id="a-nombre" class="input" placeholder="Nombre del producto" required>
-      <input type="text" id="a-cat" class="input" placeholder="Categoría (ej. Tabletas de origen)" required>
-      <input type="number" id="a-pct" class="input" placeholder="% Cacao" value="70" required>
-      <input type="text" id="a-notas" class="input" placeholder="Notas de cata">
+      <input type="text" id="a-nombre" class="input" placeholder="Nombre de la pieza artesanal" required>
+      <input type="text" id="a-cat" class="input" placeholder="Categoría (ej. Textiles, Cerámica, Joyería)" required>
+      <input type="number" id="a-pct" class="input" placeholder="% Material Natural / Hecho a mano" value="100"
+        required>
+      <input type="text" id="a-notas" class="input"
+        placeholder="Materiales y técnica (ej. Lana de alpaca, telar manual)">
       <input type="number" step="0.01" id="a-precio" class="input" placeholder="Precio (S/)" required>
-      <input type="number" id="a-stock" class="input" placeholder="Stock disponible" value="15" required>
+      <input type="number" id="a-stock" class="input" placeholder="Stock disponible" value="10" required>
       <button type="submit" class="btn btn-accent">Publicar en Tienda</button>
     </form>
 
-    <h2 class="serif" style="font-size:1.6rem; margin-top:2rem;">Mis Productos Publicados</h2>
+    <h2 class="serif" style="font-size:1.6rem; margin-top:2rem;">Mis Piezas Publicadas</h2>
     <div class="table-wrap">
       <table>
         <thead>
-          <tr><th>Producto</th><th>Categoría</th><th>% Cacao</th><th>Precio</th><th>Stock</th><th>Acción</th></tr>
+          <tr>
+            <th>Pieza</th>
+            <th>Categoría</th>
+            <th>% Natural</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Acción</th>
+          </tr>
         </thead>
         <tbody id="tabla-artesano"></tbody>
       </table>
@@ -73,7 +85,7 @@
               <td><button class="chip" onclick="borrarMio(${p.id})">Retirar</button></td>
             </tr>
           `).join('')
-        : '<tr><td colspan="6">Aún no has publicado productos propios.</td></tr>';
+        : '<tr><td colspan="6">Aún no has publicado piezas artesanales propias.</td></tr>';
     }
 
     document.getElementById('form-artesano').addEventListener('submit', async (e) => {
@@ -94,10 +106,11 @@
     });
 
     window.borrarMio = async (id) => {
-      if (!confirm('¿Retirar este producto de la tienda?')) return;
+      if (!confirm('¿Retirar esta pieza de la tienda?')) return;
       await apiFetch(`/productos/${id}`, { method: 'DELETE' });
       cargarMisProductos();
     };
   </script>
 </body>
+
 </html>
