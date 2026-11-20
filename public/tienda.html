@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kallpa Cacao · Tienda</title>
+  <title>Ayni Artesanías · Tienda</title>
   <link rel="stylesheet" href="/css/styles.css">
 </head>
+
 <body>
   <header class="navbar">
     <div class="nav-inner">
-      <a href="/index.html" class="serif" style="font-size:1.65rem;">Kallpa Cacao</a>
+      <a href="/index.html" class="serif" style="font-size:1.65rem;">Ayni Artesanías</a>
       <nav class="nav-links" id="nav-links">
         <a href="/index.html">Inicio</a>
         <a href="/tienda.html" class="active">Tienda</a>
@@ -27,27 +29,31 @@
   <main class="container">
     <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
       <div>
-        <h1 class="serif" style="font-size:2.6rem;">Nuestra colección</h1>
-        <p style="opacity:0.75;">Filtra por categoría o busca por notas de cata.</p>
+        <h1 class="serif" style="font-size:2.6rem;">Nuestra colección artesanal</h1>
+        <p style="opacity:0.75;">Filtra por categoría o busca por técnica y material.</p>
       </div>
-      <input type="search" id="buscador-tienda" class="input" style="max-width:280px;" placeholder="Buscar chocolate o nota...">
+      <input type="search" id="buscador-tienda" class="input" style="max-width:280px;"
+        placeholder="Buscar pieza, material o técnica...">
     </div>
 
     <div id="filtros-categoria" style="display:flex; flex-wrap:wrap; gap:0.5rem; margin:1.5rem 0 2rem;"></div>
     <div id="grid-productos" class="grid-4"></div>
   </main>
 
-  <footer>© 2026 Kallpa Cacao · Hecho a mano en los Andes</footer>
+  <footer>© 2026 Ayni Artesanías · Hecho a mano en los Andes</footer>
 
   <div id="shade" class="shade"></div>
   <aside id="drawer" class="drawer">
-    <div style="display:flex; justify-content:space-between; align-items:center; padding:1.25rem; border-bottom:1px solid var(--line);">
+    <div
+      style="display:flex; justify-content:space-between; align-items:center; padding:1.25rem; border-bottom:1px solid var(--line);">
       <h2 class="serif" style="font-size:1.6rem;">Tu bolsa</h2>
       <button id="close-cart" class="chip">Cerrar</button>
     </div>
-    <div id="cart-items" style="flex:1; overflow-y:auto; padding:1.25rem; display:flex; flex-direction:column; gap:1rem;"></div>
+    <div id="cart-items"
+      style="flex:1; overflow-y:auto; padding:1.25rem; display:flex; flex-direction:column; gap:1rem;"></div>
     <div style="padding:1.25rem; border-top:1px solid var(--line);">
-      <div style="display:flex; justify-content:space-between; font-size:1.1rem;"><span>Subtotal</span><strong id="cart-sub">S/ 0.00</strong></div>
+      <div style="display:flex; justify-content:space-between; font-size:1.1rem;"><span>Subtotal</span><strong
+          id="cart-sub">S/ 0.00</strong></div>
       <p id="cart-ship" style="font-size:0.85rem; opacity:0.75; margin-top:0.25rem;"></p>
       <button id="checkout-btn" class="btn" style="width:100%; margin-top:1rem;">Confirmar pedido</button>
     </div>
@@ -57,4 +63,5 @@
   <script src="/js/main.js" defer></script>
   <script src="/js/tienda.js" defer></script>
 </body>
+
 </html>
