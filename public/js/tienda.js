@@ -1,17 +1,17 @@
 const CATALOGO_LARQ = [
-  { id: 1, nuevo: true, categoria: 'Tabletas de origen', porcentaje_cacao: 70, nombre: 'La Convención Reserve', tags: 'Antioxidante · Cosecha Única · Sin Lecitina', precio: 28, precioAntes: 34, color_hex: '#3B2216' },
-  { id: 2, nuevo: true, categoria: 'Tabletas de origen', porcentaje_cacao: 85, nombre: 'Quillabamba Pure 85%', tags: 'Alto Cacao · Energía Limpia · Vegano', precio: 32, precioAntes: 38, color_hex: '#23140D' },
-  { id: 3, nuevo: false, categoria: 'Tabletas de origen', porcentaje_cacao: 55, nombre: 'Andean Milk & Sal de Maras', tags: 'Cremoso · Caña Orgánica', precio: 26, precioAntes: null, color_hex: '#6B4226' },
-  { id: 4, nuevo: true, categoria: 'Bombones', porcentaje_cacao: 65, nombre: 'Colección Bombones Amazónicos', tags: 'Maracuyá · Aguaymanto · Café', precio: 78, precioAntes: 89, color_hex: '#5C3317' },
-  { id: 5, nuevo: false, categoria: 'Cacao en polvo & nibs', porcentaje_cacao: 100, nombre: 'Nibs Tostados PureRoast™', tags: 'Crujiente · Superfood · 0% Azúcar', precio: 34, precioAntes: 40, color_hex: '#4A2A1A' },
-  { id: 6, nuevo: false, categoria: 'Cacao en polvo & nibs', porcentaje_cacao: 100, nombre: 'Cacao Ceremonial Cusco', tags: 'Prensado en Frío · Grado Ceremonial', precio: 42, precioAntes: null, color_hex: '#2C1A12' },
-  { id: 7, nuevo: true, categoria: 'Regalos', porcentaje_cacao: 70, nombre: 'Edición Limitada Ayni Box', tags: '6 Tabletas + Guía de Cata', precio: 149, precioAntes: 175, color_hex: '#153E5C' },
-  { id: 8, nuevo: false, categoria: 'Bombones', porcentaje_cacao: 72, nombre: 'Trufas de Lúcuma & Cacao', tags: 'Textura Fundente · Sin Conservantes', precio: 44, precioAntes: null, color_hex: '#7A4A2B' }
+  { id: 1, nuevo: true, categoria: 'Textiles y Tejidos', porcentaje_cacao: 100, nombre: 'Chullo Cusqueño Tradicional', tags: 'Baby Alpaca · Tinte Cochinilla · Telar Manual', precio: 85, precioAntes: 98, color_hex: '#8B2635' },
+  { id: 2, nuevo: true, categoria: 'Cerámica', porcentaje_cacao: 100, nombre: 'Torito de Pucará Ceremonial', tags: 'Arcilla Roja · Esmaltado a Mano · Puno', precio: 65, precioAntes: 78, color_hex: '#A0522D' },
+  { id: 3, nuevo: false, categoria: 'Textiles y Tejidos', porcentaje_cacao: 100, nombre: 'Manta Ceremonial Chinchero', tags: 'Lana de Oveja · Iconografía Ancestral', precio: 220, precioAntes: null, color_hex: '#5C2C16' },
+  { id: 4, nuevo: true, categoria: 'Arte Popular', porcentaje_cacao: 100, nombre: 'Retablo Ayacuchano Costumbrista', tags: 'Cedro · Pasta de Papa · Pintado a Pulso', precio: 140, precioAntes: 165, color_hex: '#1E4D6B' },
+  { id: 5, nuevo: false, categoria: 'Joyería', porcentaje_cacao: 95, nombre: 'Aretes Filigrana Chakana', tags: 'Plata 950 · Crisocola Natural · Hecho a Mano', precio: 110, precioAntes: 125, color_hex: '#2E8B57' },
+  { id: 6, nuevo: false, categoria: 'Joyería', porcentaje_cacao: 95, nombre: 'Pulsera Tejida con Dije Inca', tags: 'Hilo Encerado · Plata Quemada · Ajustable', precio: 58, precioAntes: null, color_hex: '#374151' },
+  { id: 7, nuevo: true, categoria: 'Regalos', porcentaje_cacao: 100, nombre: 'Cofre Colección Maestros Andinos', tags: 'Torito + Chullo + Certificado de Autor', precio: 189, precioAntes: 220, color_hex: '#153E5C' },
+  { id: 8, nuevo: false, categoria: 'Cerámica', porcentaje_cacao: 100, nombre: 'Set Mate Burilado Huanca', tags: 'Calabaza Seca · Tallado a Buril · Quinual', precio: 55, precioAntes: null, color_hex: '#4A3520' }
 ];
 
 let productosData = [];
 let catFiltro = 'Todos';
-const seleccionTamano = {}; // Guarda si el usuario eligió 70g o 140g en cada tarjeta
+const seleccionTamano = {}; // Guarda si el usuario eligió Estándar o Grande en cada tarjeta
 
 async function iniciarCatalogo() {
   const grid = document.getElementById('grid-productos');
@@ -24,8 +24,8 @@ async function iniciarCatalogo() {
     productosData = apiData.length ? apiData.map((p, i) => ({
       ...p,
       nuevo: i < 3,
-      tags: p.notas_cata || 'Cacao Fino · Comercio Directo',
-      precioAntes: i % 2 === 0 ? Number(p.precio) + 6 : null
+      tags: p.notas_cata || 'Hecho a Mano · Comercio Justo',
+      precioAntes: i % 2 === 0 ? Number(p.precio) + 12 : null
     })) : CATALOGO_LARQ;
   } catch {
     productosData = CATALOGO_LARQ;
@@ -63,12 +63,12 @@ function renderCards(query = '') {
   const filtrados = productosData.filter(p => {
     const okCat = catFiltro === 'Todos' || p.categoria === catFiltro;
     const okTxt = p.nombre.toLowerCase().includes(query.toLowerCase()) ||
-                  (p.tags || '').toLowerCase().includes(query.toLowerCase());
+      (p.tags || '').toLowerCase().includes(query.toLowerCase());
     return okCat && okTxt;
   });
 
   grid.innerHTML = filtrados.map(p => {
-    const sel = seleccionTamano[p.id] || { label: '70g', mult: 1 };
+    const sel = seleccionTamano[p.id] || { label: 'Estándar', mult: 1 };
     const precioActual = Number(p.precio) * sel.mult;
     const precioAntiguo = p.precioAntes ? Number(p.precioAntes) * sel.mult : null;
 
@@ -83,8 +83,8 @@ function renderCards(query = '') {
             <h3 style="font-size:1.1rem; font-family:inherit;">${p.nombre}</h3>
           </div>
           <div class="size-pills">
-            <button class="size-pill ${sel.label === '70g' ? 'active' : ''}" onclick="cambiarTamano(${p.id}, '70g', 1)">70 g</button>
-            <button class="size-pill ${sel.label === '140g' ? 'active' : ''}" onclick="cambiarTamano(${p.id}, '140g', 1.8)">140 g</button>
+            <button class="size-pill ${sel.label === 'Estándar' ? 'active' : ''}" onclick="cambiarTamano(${p.id}, 'Estándar', 1)">Estándar</button>
+            <button class="size-pill ${sel.label === 'Grande' ? 'active' : ''}" onclick="cambiarTamano(${p.id}, 'Grande', 1.6)">Grande</button>
           </div>
           <p class="feature-tags">${p.tags}</p>
         </div>
