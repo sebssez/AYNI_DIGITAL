@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kallpa Cacao · Cacao Puro de Origen</title>
+  <title>Ayni Artesanías · Arte Hecho a Mano</title>
   <link rel="stylesheet" href="/css/styles.css">
 </head>
+
 <body>
-  <!-- Barra promocional escalonada estilo LARQ -->
+  <!-- Barra promocional escalonada -->
   <div class="top-bar">
-    Oferta de Cosecha: hasta 20% de descuento automático en tu cesta · 10% en pedidos de S/ 80+
+    Feria de Taller: hasta 20% de descuento automático en tu cesta · 10% en pedidos de S/ 80+
   </div>
 
   <!-- Navbar -->
   <header class="navbar">
     <div class="nav-inner">
-      <a href="/index.html" class="serif" style="font-size:1.7rem; letter-spacing:0.06em;">KALLPA</a>
+      <a href="/index.html" class="serif" style="font-size:1.7rem; letter-spacing:0.06em;">AYNI</a>
       <nav class="nav-links">
         <a href="/index.html" class="active">Inicio</a>
         <a href="/tienda.html">Tienda</a>
-        <a href="#rituales">Rituales</a>
-        <a href="#analizador">Guía de Pureza</a>
+        <a href="#rituales">Colecciones</a>
+        <a href="#analizador">Guía de Autenticidad</a>
         <a href="/pedidos.html">Mis Pedidos</a>
         <a href="/admin/dashboard.html" id="nav-admin" style="display:none; color:#153E5C; font-weight:700;">Admin</a>
       </nav>
@@ -36,46 +38,63 @@
 
   <main>
     <!-- Hero Principal -->
-    <section class="container" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap:3rem; align-items:center; padding-top:3.5rem; padding-bottom:4rem;">
+    <section class="container"
+      style="display:grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap:3rem; align-items:center; padding-top:3.5rem; padding-bottom:4rem;">
       <div>
-        <span style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.15em; color:#153E5C; font-weight:700;">
-          Bean-to-Bar · La Convención, Cusco
+        <span
+          style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.15em; color:#153E5C; font-weight:700;">
+          Hecho a Mano · Cusco & Andes del Perú
         </span>
         <h1 class="serif" style="font-size:3.4rem; margin:0.75rem 0 1.25rem;">
-          Cacao puro, diseñado para tu ritual diario.
+          Arte ancestral, creado para tu espacio diario.
         </h1>
         <p style="font-size:1.05rem; opacity:0.8; max-width:480px; margin-bottom:2rem;">
-          Sin lecitinas, sin grasas hidrogenadas ni saborizantes. Solo granos nativos fermentados y refinados durante 48 horas. Descuento automático al finalizar tu compra.
+          Sin moldes industriales, sin fibras sintéticas ni producción en serie. Solo piezas únicas trabajadas a mano
+          por maestros artesanos. Descuento automático al finalizar tu compra.
         </p>
         <div style="display:flex; gap:0.85rem; flex-wrap:wrap;">
-          <a href="/tienda.html" class="btn btn-accent">Comprar ahora</a>
-          <a href="#analizador" class="btn btn-o">¿Qué contiene tu chocolate?</a>
+          <a href="/tienda.html" class="btn btn-accent">Explorar tienda</a>
+          <a href="#analizador" class="btn btn-o">¿Cómo reconocer una pieza auténtica?</a>
         </div>
       </div>
 
-      <div style="background:linear-gradient(145deg, #153E5C, #2C1A12); border-radius:24px; padding:3rem; display:grid; place-items:center;">
-        <svg viewBox="0 0 320 360" style="width:100%; max-width:290px;" role="img" aria-label="Tableta Kallpa Cacao">
-          <g transform="rotate(-7 160 180)"><rect x="40" y="40" width="170" height="250" rx="12" fill="#3B2216"/>
-          <g fill="#5C3720" stroke="#1C1917" stroke-width="3"><rect x="52" y="52" width="68" height="70" rx="6"/><rect x="130" y="52" width="68" height="70" rx="6"/><rect x="52" y="132" width="68" height="70" rx="6"/><rect x="130" y="132" width="68" height="70" rx="6"/><rect x="52" y="212" width="68" height="66" rx="6"/></g></g>
-          <g transform="rotate(12 230 200)"><rect x="190" y="110" width="100" height="200" rx="12" fill="#3B2216"/><g fill="#7A4A2B" stroke="#1C1917" stroke-width="3"><rect x="200" y="122" width="80" height="80" rx="6"/><rect x="200" y="212" width="80" height="88" rx="6"/></g></g>
+      <div
+        style="background:linear-gradient(145deg, #153E5C, #5C2C16); border-radius:24px; padding:3rem; display:grid; place-items:center;">
+        <!-- Ilustración geométrica textil / vasija andina -->
+        <svg viewBox="0 0 320 360" style="width:100%; max-width:290px;" role="img" aria-label="Pieza Artesanal Ayni">
+          <g transform="rotate(-5 160 180)">
+            <rect x="45" y="35" width="230" height="290" rx="16" fill="#8B2635" />
+            <g fill="none" stroke="#F59E0B" stroke-width="4">
+              <polygon points="160,65 235,140 160,215 85,140" />
+              <polygon points="160,95 205,140 160,185 115,140" />
+              <line x1="65" y1="245" x2="255" y2="245" />
+              <line x1="65" y1="265" x2="255" y2="265" />
+              <circle cx="110" cy="292" r="8" fill="#F59E0B" />
+              <circle cx="160" cy="292" r="8" fill="#F59E0B" />
+              <circle cx="210" cy="292" r="8" fill="#F59E0B" />
+            </g>
+          </g>
         </svg>
       </div>
     </section>
 
-    <!-- Cinta Infinita Animada (Marquee estilo LARQ) -->
+    <!-- Cinta Infinita Animada -->
     <div class="marquee-wrap">
       <div class="marquee-track">
-         •  #CacaoConPropósito  •  100% Grano Nativo Chuncho  •  Sin Aditivos ni Lecitina de Soya  •  Refinado 48 Horas en Piedra  •  +30% Comercio Directo
-         •  #CacaoConPropósito  •  100% Grano Nativo Chuncho  •  Sin Aditivos ni Lecitina de Soya  •  Refinado 48 Horas en Piedra  •  +30% Comercio Directo
+         •  #ArtesaníaConIdentidad  •  100% Hecho a Mano  •  Tintes Naturales y Fibras Nobles  •  Técnicas Ancestrales
+        Vivas  •  Comercio Justo Directo del Taller
+         •  #ArtesaníaConIdentidad  •  100% Hecho a Mano  •  Tintes Naturales y Fibras Nobles  •  Técnicas Ancestrales
+        Vivas  •  Comercio Justo Directo del Taller
       </div>
     </div>
 
-    <!-- Sección Catálogo Destacado con Selector de Gramaje -->
+    <!-- Sección Catálogo Destacado con Selector de Formato -->
     <section class="container">
-      <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem;">
+      <div
+        style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem;">
         <div>
-          <h2 class="serif" style="font-size:2.5rem;">Productos Kallpa</h2>
-          <p style="opacity:0.75;">Selecciona el gramaje y añade a tu cesta para activar los descuentos por nivel.</p>
+          <h2 class="serif" style="font-size:2.5rem;">Piezas Destacadas</h2>
+          <p style="opacity:0.75;">Selecciona el formato y añade a tu cesta para activar los descuentos por nivel.</p>
         </div>
         <a href="/tienda.html" class="btn btn-o" style="padding:0.55rem 1.25rem; font-size:0.85rem;">Ver todo</a>
       </div>
@@ -84,74 +103,86 @@
       <div id="grid-productos" class="grid-4"></div>
     </section>
 
-    <!-- Sección "Elige cómo disfrutas tu cacao" (3 tarjetas estilo LARQ) -->
+    <!-- Sección Colecciones (3 tarjetas) -->
     <section id="rituales" class="container">
-      <h2 class="serif" style="font-size:2.5rem; margin-bottom:1.75rem;">Elige tu ritual</h2>
+      <h2 class="serif" style="font-size:2.5rem; margin-bottom:1.75rem;">Explora por tradición</h2>
       <div class="ritual-grid">
         <div class="ritual-card">
           <div>
-            <span style="font-size:0.78rem; font-weight:700; text-transform:uppercase; color:#153E5C;">Sobre la marcha</span>
-            <h3 class="serif" style="font-size:1.85rem; margin:0.5rem 0;">Tabletas de Origen</h3>
-            <p style="font-size:0.92rem; opacity:0.8;">Barras de 70% y 85% cacao para energía limpia y concentración en cualquier momento.</p>
+            <span style="font-size:0.78rem; font-weight:700; text-transform:uppercase; color:#153E5C;">Para
+              vestir</span>
+            <h3 class="serif" style="font-size:1.85rem; margin:0.5rem 0;">Textiles y Joyería</h3>
+            <p style="font-size:0.92rem; opacity:0.8;">Prendas tejidas en telar de cintura con lana de alpaca y
+              filigrana en plata 950.</p>
           </div>
-          <a href="/tienda.html" class="btn" style="width:fit-content; margin-top:1.5rem;">Explorar tabletas</a>
+          <a href="/tienda.html" class="btn" style="width:fit-content; margin-top:1.5rem;">Explorar textiles</a>
         </div>
 
         <div class="ritual-card">
           <div>
-            <span style="font-size:0.78rem; font-weight:700; text-transform:uppercase; color:#153E5C;">En casa</span>
-            <h3 class="serif" style="font-size:1.85rem; margin:0.5rem 0;">Cacao Ceremonial & Nibs</h3>
-            <p style="font-size:0.92rem; opacity:0.8;">Pasta pura prensada en frío y nibs tostados para bebidas calientes y desayunos nutritivos.</p>
+            <span style="font-size:0.78rem; font-weight:700; text-transform:uppercase; color:#153E5C;">Para el
+              hogar</span>
+            <h3 class="serif" style="font-size:1.85rem; margin:0.5rem 0;">Cerámica & Arte Popular</h3>
+            <p style="font-size:0.92rem; opacity:0.8;">Toritos de Pucará, mates burilados y retablos moldeados y
+              pintados a mano.</p>
           </div>
-          <a href="/tienda.html" class="btn" style="width:fit-content; margin-top:1.5rem;">Explorar cacao puro</a>
+          <a href="/tienda.html" class="btn" style="width:fit-content; margin-top:1.5rem;">Explorar cerámica</a>
         </div>
 
         <div class="ritual-card" style="background:#153E5C; color:#FFFFFF;">
           <div>
-            <span style="font-size:0.78rem; font-weight:700; text-transform:uppercase; color:#93C5FD;">Regalos empresa</span>
-            <h3 class="serif" style="font-size:1.85rem; margin:0.5rem 0;">La originalidad nunca pasa de moda</h3>
-            <p style="font-size:0.92rem; opacity:0.85;">Cajas de degustación personalizadas con tarjeta de cata para eventos y regalos corporativos.</p>
+            <span style="font-size:0.78rem; font-weight:700; text-transform:uppercase; color:#93C5FD;">Regalos
+              corporativos</span>
+            <h3 class="serif" style="font-size:1.85rem; margin:0.5rem 0;">La autenticidad nunca pasa de moda</h3>
+            <p style="font-size:0.92rem; opacity:0.85;">Piezas personalizadas con certificado de origen y reseña del
+              maestro artesano para eventos especiales.</p>
           </div>
-          <a href="/tienda.html" class="btn" style="background:#FFFFFF; color:#153E5C; width:fit-content; margin-top:1.5rem;">Solicitar selección</a>
+          <a href="/tienda.html" class="btn"
+            style="background:#FFFFFF; color:#153E5C; width:fit-content; margin-top:1.5rem;">Solicitar selección</a>
         </div>
       </div>
     </section>
 
-    <!-- Analizador Interactivo: "¿Qué contiene tu chocolate comercial?" (Inspirado en el analizador de agua de LARQ) -->
+    <!-- Analizador Interactivo: "¿Artesanía auténtica o réplica industrial?" -->
     <section id="analizador" class="container">
       <div style="background:var(--bg2); border-radius:24px; padding:2.5rem; border:1px solid var(--line);">
         <div style="max-width:680px;">
-          <h2 class="serif" style="font-size:2.3rem;">¿Qué se esconde en el chocolate industrial?</h2>
+          <h2 class="serif" style="font-size:2.3rem;">¿Cómo distinguir una pieza artesanal auténtica?</h2>
           <p style="margin-top:0.75rem; opacity:0.8;">
-            Muchos chocolates comerciales reemplazan la manteca de cacao por aceites vegetales y exceso de azúcar. Selecciona un aditivo común para ver la diferencia con Kallpa Cacao:
+            Muchos souvenirs comerciales imitan diseños tradicionales usando materiales sintéticos y moldes masivos.
+            Selecciona un aspecto clave para ver la diferencia con Ayni:
           </p>
         </div>
 
         <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin:1.5rem 0;" id="ingredientes-tabs">
-          <button class="chip on" data-ing="grasa">Grasas Vegetales (PGPR)</button>
-          <button class="chip" data-ing="azucar">Jarabe de Glucosa / Azúcar Refinada</button>
-          <button class="chip" data-ing="lecitina">Lecitina de Soya Transgénica</button>
-          <button class="chip" data-ing="aromas">Saborizantes Artificiales</button>
+          <button class="chip on" data-ing="fibra">Fibras y Materiales</button>
+          <button class="chip" data-ing="tintes">Tintes y Pigmentos</button>
+          <button class="chip" data-ing="proceso">Proceso de Elaboración</button>
+          <button class="chip" data-ing="acabado">Acabado y Detalles</button>
         </div>
 
-        <div id="ingrediente-detalle" style="background:var(--card); padding:1.5rem; border-radius:14px; border:1px solid var(--line);">
-          <strong style="color:#B91C1C; font-size:0.9rem;">Chocolate Industrial:</strong>
-          <p style="margin:0.35rem 0 0.85rem; font-size:0.95rem;">Sustituye la manteca natural de cacao por aceites de palma o soya hidrogenados para abaratar costos, dejando una sensación cerosa.</p>
-          <strong style="color:#15803D; font-size:0.9rem;">Estándar Kallpa Cacao:</strong>
-          <p style="margin-top:0.35rem; font-size:0.95rem;">100% manteca pura del mismo grano de cacao, fundiéndose exactamente a la temperatura corporal (36.5 °C).</p>
+        <div id="ingrediente-detalle"
+          style="background:var(--card); padding:1.5rem; border-radius:14px; border:1px solid var(--line);">
+          <strong style="color:#B91C1C; font-size:0.9rem;">Réplica Industrial:</strong>
+          <p style="margin:0.35rem 0 0.85rem; font-size:0.95rem;">Utiliza acrílicos derivados del petróleo, resinas
+            plásticas o aleaciones baratas que se desgastan rápido.</p>
+          <strong style="color:#15803D; font-size:0.9rem;">Estándar Ayni Artesanías:</strong>
+          <p style="margin-top:0.35rem; font-size:0.95rem;">100% materiales nobles de origen: lana de baby alpaca,
+            arcilla natural, madera de cedro y plata 950.</p>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>© 2026 Kallpa Cacao · Cacao Fino de Origen · Cusco, Perú</p>
+    <p>© 2026 Ayni Artesanías · Arte Popular y Tradición · Cusco, Perú</p>
   </footer>
 
-  <!-- Cesta Lateral Deslizante con Barra de Descuentos Escalonados (Estilo LARQ) -->
+  <!-- Cesta Lateral Deslizante con Barra de Descuentos Escalonados -->
   <div id="shade" class="shade"></div>
   <aside id="drawer" class="drawer" aria-label="Tu cesta">
-    <div style="display:flex; justify-content:space-between; align-items:center; padding:1.25rem; border-bottom:1px solid var(--line);">
+    <div
+      style="display:flex; justify-content:space-between; align-items:center; padding:1.25rem; border-bottom:1px solid var(--line);">
       <h2 class="serif" style="font-size:1.6rem;">Tu cesta</h2>
       <button id="close-cart" class="chip">Cerrar</button>
     </div>
@@ -163,11 +194,14 @@
         <div id="tier-1" class="tier-step">15% off<br>S/ 140</div>
         <div id="tier-2" class="tier-step">20% off<br>S/ 200</div>
       </div>
-      <div class="progress-bg"><div id="tier-fill" class="progress-fill"></div></div>
+      <div class="progress-bg">
+        <div id="tier-fill" class="progress-fill"></div>
+      </div>
       <p id="tier-msg" style="font-size:0.78rem; margin-top:0.5rem; text-align:center; font-weight:500;"></p>
     </div>
 
-    <div id="cart-items" style="flex:1; overflow-y:auto; padding:1.25rem; display:flex; flex-direction:column; gap:1rem;"></div>
+    <div id="cart-items"
+      style="flex:1; overflow-y:auto; padding:1.25rem; display:flex; flex-direction:column; gap:1rem;"></div>
 
     <div style="padding:1.25rem; border-top:1px solid var(--line); background:var(--bg2);">
       <p id="cart-disc" style="font-size:0.82rem; color:#15803D; font-weight:600; margin-bottom:0.35rem;"></p>
@@ -183,23 +217,23 @@
   <script src="/js/main.js" defer></script>
   <script src="/js/tienda.js" defer></script>
   <script>
-    // Lógica interactiva del Analizador de Pureza
+    // Lógica interactiva de la Guía de Autenticidad
     const INFO_ING = {
-      grasa: {
-        bad: 'Sustituye la manteca natural de cacao por aceites de palma o soya hidrogenados para abaratar costos, dejando una sensación cerosa.',
-        good: '100% manteca pura del mismo grano de cacao, fundiéndose exactamente a la temperatura corporal (36.5 °C).'
+      fibra: {
+        bad: 'Utiliza acrílicos derivados del petróleo, resinas plásticas o aleaciones baratas que se desgastan rápido.',
+        good: '100% materiales nobles de origen: lana de baby alpaca, arcilla natural, madera de cedro y plata 950.'
       },
-      azucar: {
-        bad: 'El azúcar refinado suele ser el primer ingrediente (más del 55%), ocultando defectos de granos mal fermentados.',
-        good: 'Usamos entre 0% y 30% de azúcar orgánica de caña sin refinar, permitiendo sentir las notas frutales naturales del cacao.'
+      tintes: {
+        bad: 'Anilinas químicas industriales que destiñen con facilidad y contaminan los ríos locales.',
+        good: 'Pigmentos botánicos y minerales ancestrales como cochinilla, índigo, qolle y tierras de color.'
       },
-      lecitina: {
-        bad: 'Emulsionante industrial usado para acelerar el mezclado en máquinas masivas y reducir el tiempo de refinado.',
-        good: 'Refinamos en molinos de piedra durante 48 horas continuas para lograr sedosidad natural sin emulsionantes.'
+      proceso: {
+        bad: 'Fabricación automatizada en serie donde miles de piezas salen idénticas en pocos minutos.',
+        good: 'Elaboración manual pieza por pieza en telares de cintura, tornos tradicionales o burilado a pulso.'
       },
-      aromas: {
-        bad: 'Vainillina sintética derivada de petroquímicos para estandarizar un sabor plano.',
-        good: 'Tostado controlado por microlote que preserva los aromas reales a frutos rojos, nueces y miel de cada finca.'
+      acabado: {
+        bad: 'Bordes moldeados a máquina y patrones estampados sin relieve ni alma.',
+        good: 'Cada trazo y tejido tiene sutiles variaciones únicas que certifican el trabajo humano irrepetible.'
       }
     };
 
@@ -209,12 +243,13 @@
       [...e.currentTarget.children].forEach(b => b.classList.toggle('on', b === btn));
       const d = INFO_ING[btn.dataset.ing];
       document.getElementById('ingrediente-detalle').innerHTML = `
-        <strong style="color:#B91C1C; font-size:0.9rem;">Chocolate Industrial:</strong>
+        <strong style="color:#B91C1C; font-size:0.9rem;">Réplica Industrial:</strong>
         <p style="margin:0.35rem 0 0.85rem; font-size:0.95rem;">${d.bad}</p>
-        <strong style="color:#15803D; font-size:0.9rem;">Estándar Kallpa Cacao:</strong>
+        <strong style="color:#15803D; font-size:0.9rem;">Estándar Ayni Artesanías:</strong>
         <p style="margin-top:0.35rem; font-size:0.95rem;">${d.good}</p>
       `;
     });
   </script>
 </body>
+
 </html>
